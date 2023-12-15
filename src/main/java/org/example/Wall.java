@@ -9,22 +9,16 @@ public class Wall implements Structure{
 
     @Override
     public Optional<Block> findBlockByColor(String color) {
-        for (Block block : blocks) {
-            if (block.getColor().equals(color)) {
-                return Optional.of(block);
-            }
-        }
-        return Optional.empty();
+        return blocks.stream()
+                .filter(block -> block.getColor().equals(color))
+                .findAny();
     }
 
     @Override
     public List<Block> findBlocksByMaterial(String material) {
-        for (Block block : blocks) {
-            if (block.getMaterial().equals(material)) {
-                return List.of(block);
-            }
-        }
-        return null;
+        return blocks.stream()
+                .filter(block -> block.getMaterial().equals(material))
+                .toList();
     }
 
     @Override
